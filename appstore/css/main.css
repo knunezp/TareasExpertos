@@ -1,0 +1,26 @@
+body {
+    padding-top: 5rem;
+}
+.starter-template {
+    padding: 3rem 1.5rem;
+    text-align: center;
+}
+
+.colorNav{
+	background-color: #000!important;;
+}
+
+.tar{
+	border: 1px solid var(--warning);
+}
+
+.tar:hover{
+	background-color: #ffc107;
+	border-color: #ffc107;
+	color: #fff;
+}
+
+.star{
+	color: yellow;
+}
+
