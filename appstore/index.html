@@ -22,14 +22,14 @@
    <form class="form-inline my-2 my-lg-0">
    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
    <button class="btn btn btn-warning my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-   <button class="btn btn btn-primary my-2 my-sm-0 ml-3" type="button"><i class="fas fa-plus"></i></button>
+   <button class="btn btn btn-primary my-2 my-sm-0 ml-3" type="button" data-toggle="modal" data-target="#modalAdd"><i class="fas fa-plus"></i></button>
    </form>
    </div>
  </nav>
 
-   <div class="container-fluid  m-5 ml-5 mr-5">
+   <div class="container-fluid  ml-3 mr-3">
     <div class="row">
-    	<div class="col-12 col-lg-12 ml-5 mr-5">
+    	<div class="col-12 col-lg-12 mt-5">
     		<select name="categoria" id="categoria" class="form-control" >
     			<option value="null" selected="true">Seleccione una categoria</option>
     		</select>
@@ -47,27 +47,6 @@
     <div class="modal-content">
       <div class="modal-header">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-  </ol>
-      
-      </div>
-      <div class="modal-body">
-        
-      </div>
-      <div class="modal-footer">
-
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-success">Instalar</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!--FIN MODAL--->
-
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -93,6 +72,42 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-success">Instalar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--FIN MODAL--->
+<!---modal agregar-->
+
+<!-- Modal -->
+<div class="modal fade" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Aplicacion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

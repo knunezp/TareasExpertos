@@ -24,3 +24,9 @@ body {
 	color: yellow;
 }
 
+.padImg{
+    padding-top: 4px;
+    padding-right: 4px;
+    padding-left: 4px;
+    padding-bottom: 4px;
+}

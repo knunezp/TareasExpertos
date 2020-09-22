@@ -105,10 +105,10 @@ function  cargarAPPS(valueCategoria) {
      
      
  			$("#app").append(
-     `<div class="col-6  col-sm-3  col-md-3 col-xl-2 col-lg-2  mt-3 " data-toggle="modal" data-target="#descripcionApp">
-     <div class="card tar">
-            <img src="${categorias1[i].aplicaciones[j].icono}" class="card-img-top mt-3" alt="...">
-            <div class="mt-3">
+     `<div class="col-6  col-sm-3  col-md-3 col-xl-2 col-lg-2  mt-2 " data-toggle="modal" data-target="#descripcionApp">
+     <div class="card tar ml-2 mr-2 mt-2">
+        <img src="${categorias1[i].aplicaciones[j].icono}" class="card-img-top padImg" alt="...">
+        <div class="mt-3">
           <h5 class="card-title">${categorias1[i].aplicaciones[j].nombre}</h5>
           <p>
          ${categorias1[i].aplicaciones[j].desarrollador}
