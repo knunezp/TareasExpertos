@@ -1,60 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Lugo</title>
-    <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="css/all.css"><!--FontAwesome-->
+    <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/all.css">
+    <!--FontAwesome-->
     <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="#">Navbar</a>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top colorNav ">
+        <a class="navbar-brand letraTitulo" href="#">lugo</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        
+
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown01">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                <select id="usuarioActual" class="form-control colorBtn rounded-pill" onchange="cambiarUsuario()">
+                <option value="">Pedro Fernandez</option>
+            </select>
+                <button class="btn btn-secondary ml-2 my-2 my-sm-0 rounded-pill colorbtnOrdenes" type="button" id="verOrdenes">Ver Ordenes</button>
             </form>
         </div>
-        </nav>
-        
-        <main role="main" class="container">
-        
-        <div class="starter-template">
-            <img src="img/meme.jpg" alt="" srcset="">
-            <p class="lead">Éxitos</p>
+    </nav>
+
+    <!---inicio contenedor-->
+    <div class="container letra">
+        <div class="row mb-5 mt-3" style="color:#2e1b50;">
+            <div class="col-12 ">
+                <h3 id="nombreUsuario"></h3>
+                <h5>Que necesitas?</h5>
+                <button id="btnCategoria" type="button" class="btn btn-primary" style="background-color: #2e1b50; float:right"><i class="fas fa-plus"></i></button>
+            </div>
         </div>
-        
-        </main><!-- /.container -->
-              
+        <div class="row" id="categorias">
+        </div>
+
+    </div>
+
+    <!--modal mostrar ordenes-->
+    <!-- Modal -->
+    <div class="modal fade" id="modalVerOrdenes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div style="background-color: #2e1b50;color:#fff">
+                    <h5 id="usuarioOrden" class="m-3"></h5>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <ul class="list-group list-group-flush" id="ordenes">
+
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-secondary rounded-pill m-3 btn-sm" style="background-color: #2e1b50;float:right" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--modal mostrar empresas-->
+    <!-- Large modal -->
+    <div class="modal fade" id="modalVerEmpresas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div style="background-color: #2e1b50;color:#fff">
+                    <h5 id="empresa" class="m-3"></h5>
+                </div>
+                <div class="container-fluid">
+                    <div class="row" id="empresasCatalogo">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--modal mostrar orden-->
+    <!-- Large modal -->
+    <div class="modal fade" id="modalPedido" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered " role="document">
+            <div class="modal-content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <h5 class="ml-3 mt-3" style="color: #2e1b50;" id="producto">
+                        </h5>
+                    </div>
+                    <div class="row mt-2">
+                        <p id="descripcioPedido" class="text-muted ml-2"></p>
+                        <div class="col-6 mt-2">
+                            Cantidad a solicitar:
+                        </div>
+                        <div class="col-6 mt-2">
+                            <input type="number" min="1" max="500" class="form-control" id="cantidad">
+                            <h5 id="precioP" style="float: right;"></h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mt-5">
+                    <hr>
+                    <button type="button" class="btn btn-secondary rounded-pill m-3 btn-sm" style="background-color: #2e1b50;float:right" onclick="procesarOrden()">Procesar Orden</button>
+                </div>
+            </div>
+            <div>
+                <button type="button" class="btn btn-secondary rounded-pill m-3 btn-sm" style="background-color: #2e1b50;float:right" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!--modal mostrar categoria-->
+    <!-- Modal -->
+
+    <div class="modal fade" id="nuevaCategoria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered " role="document">
+            <div class="modal-content">
+                <div style="background-color: #2e1b50;color:#fff">
+                    <h5 class="m-3">Nueva Categoria</h5>
+                </div>
+                <div class="container-fluid mt-3 mb-3">
+                    <div class="row">
+                        <div class="col-4">
+                            <label>Nombre Categoria</label>
+                        </div>
+                        <div class="col-8">
+                            <input type="text" class="form-control" id="nombreCategoria">
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid  mb-1">
+                    <div class="row">
+                        <div class="col-4">
+                            <label>Descripcion</label>
+                        </div>
+                        <div class="col-8">
+                            <textarea type="text" class="form-control" id="descripcionCategoria">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <hr>
+                    <button id="guardarCategoria" type="button" class="btn btn-secondary rounded-pill btn-sm ml-1 mb-3" style="background-color: #2e1b50;float:right">Guardar</button>
+                    <button type="button" class="btn btn-secondary rounded-pill  btn-sm mr-1 mb-3" style="float:right" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed-button" style="background-color: #2e1b50;"><br><br></div>
+
+
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/controlador.js"></script>
 </body>
+
 </html>
